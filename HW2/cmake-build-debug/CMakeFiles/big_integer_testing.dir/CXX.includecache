@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../gtest/gtest.h
+
+/home/st_1580/CLionProjects/cpp-studying/HW2/big_integer.cpp
+big_integer.h
+/home/st_1580/CLionProjects/cpp-studying/HW2/big_integer.h
+cstring
+-
+stdexcept
+-
+
+/home/st_1580/CLionProjects/cpp-studying/HW2/big_integer.h
+cstddef
+-
+gmp.h
+-
+iosfwd
+-
+
+/home/st_1580/CLionProjects/cpp-studying/HW2/big_integer_testing.cpp
+algorithm
+-
+cassert
+-
+cstdlib
+-
+vector
+-
+utility
+-
+gtest/gtest.h
+-
+big_integer.h
+/home/st_1580/CLionProjects/cpp-studying/HW2/big_integer.h
+
+/home/st_1580/CLionProjects/cpp-studying/HW2/gtest/gtest-all.cc
+
+/home/st_1580/CLionProjects/cpp-studying/HW2/gtest/gtest_main.cc
+
