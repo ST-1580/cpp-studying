@@ -1,0 +1,3 @@
+C:/Users/YarKirs/Documents/Programming/C++/cpp-studying/Lab2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/YarKirs/Documents/Programming/C++/cpp-studying/Lab2/cmake-build-debug/CMakeFiles/vector_testing.dir
+C:/Users/YarKirs/Documents/Programming/C++/cpp-studying/Lab2/cmake-build-debug/CMakeFiles/edit_cache.dir
