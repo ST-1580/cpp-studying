@@ -1,11 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/vector_testing.dir/main.cpp.obj"
-  "CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.obj"
-  "CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.obj"
+  "CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.o"
+  "CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.o"
+  "CMakeFiles/vector_testing.dir/main.cpp.o"
+  "vector_testing"
   "vector_testing.pdb"
-  "vector_testing.exe"
-  "vector_testing.exe.manifest"
-  "libvector_testing.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/YarKirs/Documents/Programming/C++/cpp-studying/Lab2/gtest/gtest-all.cc" "C:/Users/YarKirs/Documents/Programming/C++/cpp-studying/Lab2/cmake-build-debug/CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.obj"
-  "C:/Users/YarKirs/Documents/Programming/C++/cpp-studying/Lab2/gtest/gtest_main.cc" "C:/Users/YarKirs/Documents/Programming/C++/cpp-studying/Lab2/cmake-build-debug/CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.obj"
-  "C:/Users/YarKirs/Documents/Programming/C++/cpp-studying/Lab2/main.cpp" "C:/Users/YarKirs/Documents/Programming/C++/cpp-studying/Lab2/cmake-build-debug/CMakeFiles/vector_testing.dir/main.cpp.obj"
+  "/home/st_1580/CLionProjects/cpp-studying/Lab2/gtest/gtest-all.cc" "/home/st_1580/CLionProjects/cpp-studying/Lab2/cmake-build-debug/CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.o"
+  "/home/st_1580/CLionProjects/cpp-studying/Lab2/gtest/gtest_main.cc" "/home/st_1580/CLionProjects/cpp-studying/Lab2/cmake-build-debug/CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.o"
+  "/home/st_1580/CLionProjects/cpp-studying/Lab2/main.cpp" "/home/st_1580/CLionProjects/cpp-studying/Lab2/cmake-build-debug/CMakeFiles/vector_testing.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

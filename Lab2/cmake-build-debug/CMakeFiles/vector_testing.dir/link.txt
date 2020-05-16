@@ -1,3 +1,1 @@
-"C:\Program Files\JetBrains\CLion 2019.2.2\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\vector_testing.dir/objects.a
-C:\PROGRA~2\CODEBL~1\MinGW\bin\ar.exe cr CMakeFiles\vector_testing.dir/objects.a @CMakeFiles\vector_testing.dir\objects1.rsp
-C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE  -Wall -Wno-sign-compare -std=c++11 -pedantic -g -fsanitize=address,undefined -D_GLIBCXX_DEBUG   -Wl,--whole-archive CMakeFiles\vector_testing.dir/objects.a -Wl,--no-whole-archive  -o vector_testing.exe -Wl,--out-implib,libvector_testing.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\vector_testing.dir\linklibs.rsp
+/usr/bin/c++   -Wall -Wno-sign-compare -std=c++11 -pedantic -g -fsanitize=address,undefined -D_GLIBCXX_DEBUG  -rdynamic CMakeFiles/vector_testing.dir/main.cpp.o CMakeFiles/vector_testing.dir/gtest/gtest-all.cc.o CMakeFiles/vector_testing.dir/gtest/gtest_main.cc.o  -o vector_testing  -lpthread 

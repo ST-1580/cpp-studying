@@ -88,15 +88,15 @@ vector<T>::vector(vector const &other) : vector() {
     for (size_t i = 0; i < other.size_; i++) {
         new(new_data + i) T(other.data_[i]);
     }
-    data_ = other.data_;
+    data_ = new_data;
     size_ = other.size_;
-    capacity_ = other.capacity_;
+    capacity_ = other.size_;
 }
 
 template<typename T>
 vector<T> &vector<T>::operator=(vector const &other) {
     vector<T> new_vector (other);
-    swap(*this, new_vector);
+    swap(new_vector);
     return *this;
 }
 
@@ -162,6 +162,7 @@ void vector<T>::push_back(const T &value) {
     } else {
         push_back_realloc(value);
     }
+    size_++;
 }
 
 template<typename T>
@@ -185,9 +186,18 @@ template<typename T>
 void vector<T>::reserve(size_t len) {
     if (len > capacity_) {
         T* new_data = static_cast<T*>(operator new(len * sizeof(T)));
-        for (size_t i = 0; i < size_; i++) {
-            new (new_data + i) T (data_[i]);
+        size_t i;
+        try {
+            for (i = 0; i < size_; i++) {
+                new(new_data + i) T(data_[i]);
+            }
+        } catch (...) {
+            for (size_t j = 0; j < i; j++) {
+                new_data[j].~T();
+            }
+            throw;
         }
+        this->~vector();
         data_ = new_data;
         capacity_ = len;
     }
@@ -195,22 +205,29 @@ void vector<T>::reserve(size_t len) {
 
 template<typename T>
 void vector<T>::shrink_to_fit() {
-    T* new_data = static_cast<T*>(operator new(size_* sizeof(T)));
-    for (size_t i = 0; i < size_; i++) {
-        new (new_data + i) T (data_[i]);
+    if (size_ == 0) {
+        vector <T> empty;
+        swap(empty);
+    } else if (size_ < capacity_) {
+        T *new_data = static_cast<T *>(operator new(size_ * sizeof(T)));
+        for (size_t i = 0; i < size_; i++) {
+            new(new_data + i) T(data_[i]);
+        }
+        for (size_t i = 0; i < size_; i++) {
+            data_[i].~T();
+        }
+        operator delete(data_);
+        data_ = new_data;
     }
-    for (size_t i = 0; i < size_; i++) {
-        data_[i].~T();
-    }
-    operator delete(data_);
-    data_ = new_data;
     capacity_ = size_;
 }
 
 template<typename T>
 void vector<T>::clear() {
-    vector<T> empty;
-    swap(*this, empty);
+    for (size_t i = 0; i < size_; i++) {
+        data_[i].~T();
+    }
+    size_ = 0;
 }
 
 template<typename T>
@@ -224,49 +241,47 @@ template<typename T>
 typename vector<T>::iterator vector<T>::insert(vector::const_iterator pos, const T &value) {
     push_back(value);
     iterator curr = end() - 1;
-    while (curr != pos) {
+    while (curr != pos && curr != begin()) {
         std::swap(*curr, *(curr - 1));
         curr--;
     }
-    return data_ + pos;
+    return (pos - begin()) + begin();
 }
 
 template<typename T>
 typename vector<T>::iterator vector<T>::erase(vector::const_iterator pos) {
-    iterator curr = pos;
+    iterator curr = (pos - begin()) + begin();
     while (curr + 1 != end()) {
         std::swap(*(curr), *(curr + 1));
         curr++;
     }
     pop_back();
-    return data_ + curr;
+    return (pos - begin()) + begin();
 }
 
 template<typename T>
 typename vector<T>::iterator vector<T>::erase(vector::const_iterator first, vector::const_iterator last) {
     int del = last - first;
-    iterator curr = first;
+    iterator curr = (first - begin()) + begin();
     while (curr < last) {
-        swap(*(curr), *(curr + del));
+        std::swap(*(curr), *(curr + del));
         curr++;
     }
     for (int i = 0; i < del; i++) {
         pop_back();
     }
-    return data_ + first;
+    return (first - begin()) + begin();
 }
 
 template<typename T>
 size_t vector<T>::increase_capacity() const {
-    return 2 * capacity_;
+    return (capacity_ == 0) ? 1 : 2 * capacity_;
 }
 
 template<typename T>
 void vector<T>::push_back_realloc(const T &value) {
-    reserve(2 * capacity_);
+    T to_ins(value);
     capacity_ = increase_capacity();
-    push_back(value);
+    reserve(2 * capacity_);
+    new (data_ + size_) T(to_ins);
 }
-
-
-
