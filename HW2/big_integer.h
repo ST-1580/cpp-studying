@@ -2,8 +2,9 @@
 #define BIG_INTEGER_H
 
 #include <cstddef>
-#include <gmp.h>
 #include <iosfwd>
+#include <stdint-gcc.h>
+#include <vector>
 
 struct big_integer
 {
@@ -48,7 +49,8 @@ struct big_integer
     friend std::string to_string(big_integer const& a);
 
 private:
-    mpz_t mpz;
+    std::vector <uint32_t> value;
+    bool sign;
 };
 
 big_integer operator+(big_integer a, big_integer const& b);
