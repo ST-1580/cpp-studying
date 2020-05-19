@@ -6,19 +6,19 @@ _start:
 
                 sub             rsp, 5 * 128 * 8 		
                 mov             rcx, 128 			
-		        mov	            r13, rcx			
-		        mov		        r14, 128 * 2			
+		mov	        r13, rcx			
+		mov		r14, 128 * 2			
                 lea             rdi, [rsp + 128 * 8] 		
                 call            read_long 			
                 mov             rdi, rsp		
                 call            read_long 			
-        		lea             rsi, [rsp + 128 * 8] 		
-                lea		        r11, [rsp + 2 * 128 * 8]	
-                lea		        r12, [rsp + 4 * 128 * 8]
+        	lea             rsi, [rsp + 128 * 8] 		
+                lea		r11, [rsp + 2 * 128 * 8]	
+                lea		r12, [rsp + 4 * 128 * 8]
 
-		        call	     	mul_long_long		
+		call	     	mul_long_long		
 
-		        mov		        rdi, r11
+		mov		rdi, r11
                 call            write_long 		
                 mov             al, 0x0a
                 call            write_char
@@ -35,25 +35,25 @@ mul_long_long:
                 push            r11
                 push            r13
                 push            rsi
-		        push		    rbx
+		push		rbx
 		
 		
 .loop:
-          		mov		        rbx, [rsi]		
+          	mov		rbx, [rsi]		
 
-    		    push		    rsi				
-    		    call		    mul_long_short     		
-    		    pop		        rsi
+    		push		rsi				
+    		call		mul_long_short     		
+    		pop		rsi
 
-        		call		    add_long_long
+        	call		add_long_long
 	
-        		lea		        r11, [r11 + 8]
+        	lea		r11, [r11 + 8]
                 lea             rsi, [rsi + 8]  
 
                 dec             r13				
                 jnz             .loop
 
-		        pop		        rbx
+		pop		rbx
                 pop             rsi
                 pop             r13
                 pop             r11
@@ -123,7 +123,7 @@ mul_long_short:
                 push            rax
                 push            rdi
                 push            rcx
-		        push		    r12
+		push		r12
 
                 xor             rsi, rsi
 .loop:
@@ -133,12 +133,12 @@ mul_long_short:
                 adc             rdx, 0
                 mov             [r12], rax
                 add             rdi, 8
-		        add		        r12, 8
+		add		r12, 8
                 mov             rsi, rdx
                 dec             rcx
                 jnz             .loop
 
-		        pop		        r12
+		pop		r12
                 pop             rcx
                 pop             rdi
                 pop             rax
@@ -227,7 +227,7 @@ read_long:
 
                 sub             rax, '0'
                 mov             rbx, 10
-		        mov		        r12, rdi
+		mov		r12, rdi
                 call            mul_long_short
                 call            add_long_short
                 jmp             .loop
