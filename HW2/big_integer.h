@@ -76,7 +76,4 @@ private:
     bool sign;
 };
 
-
-// std::ostream& operator<<(std::ostream& s, big_integer const& a);
-
 #endif // BIG_INTEGER_H

@@ -418,10 +418,6 @@ std::string to_string(big_integer const& a) {
     return str;
 }
 
-/*std::ostream&operator<<(std::ostream& s, big_integer const& a) {
-
-}*/
-
 void big_integer::delete_zero() {
     while (value.size() > 1 && value.back() == 0) {
         value.pop_back();
