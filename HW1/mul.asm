@@ -53,7 +53,7 @@ mul_long_long:
                 dec             r13				
                 jnz             .loop
 
-		        pop		        rbi
+		        pop		        rbx
                 pop             rsi
                 pop             r13
                 pop             r11
