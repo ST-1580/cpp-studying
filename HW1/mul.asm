@@ -9,23 +9,23 @@ section         .text
 
 _start:
                 sub             rsp, 5 * 256 * 8    
-                mov             rcx, 256 					
-                lea             rdi, [rsp + 256 * 8] 		
-                call            read_long 			
-                mov             rdi, rsp		
-                call            read_long 			
-        		lea             r11, [rsp + 1 * 256 * 8] 		 
-                lea		        r12, [rsp + 2 * 256 * 8]	
-                lea		        r13, [rsp + 4 * 256 * 8]
+                mov             rcx, 256 
+                lea             rdi, [rsp + 256 * 8] 
+                call            read_long 
+                mov             rdi, rsp
+                call            read_long 
+                lea             r11, [rsp + 1 * 256 * 8] 
+                lea             r12, [rsp + 2 * 256 * 8]
+                lea             r13, [rsp + 4 * 256 * 8]
 
-		        call	     	mul_long_long		
+                call            mul_long_long
 
-		        mov		        rdi, r12
-                call            write_long 		
+                mov             rdi, r12
+                call            write_long 
                 mov             al, 0x0a
                 call            write_char
-                jmp             exit 			
-		
+                jmp             exit
+
 ; multiplies two long numbers
 ;    r11 -- address of multiplier #1 (long number)
 ;    r12 -- address of multiplier #2 (long number)
@@ -37,25 +37,25 @@ mul_long_long:
                 push            r11
                 push            r12
                 push            rcx
-		        push		    rbx
-		
-		
+                push            rbx
+
+
 .loop:
-          		mov		        rbx, [r11]		
+                mov             rbx, [r11]
 
-    		    push		    r11			
-    		    call		    mul_long_short     		
-    		    pop		        r11
+                push            r11
+                call            mul_long_short     
+                pop             r11
 
-        		call		    add_long_long
-	
-        		lea		        r12, [r12 + 8]
+                call            add_long_long
+
+                lea             r12, [r12 + 8]
                 lea             r11, [r11 + 8]  
 
-                dec             rcx				
+                dec             rcx
                 jnz             .loop
 
-		        pop		        rbx
+                pop             rbx
                 pop             rcx
                 pop             r12
                 pop             r11
@@ -103,7 +103,7 @@ add_long_short:
                 xor             rdx,rdx
 .loop:
                 add             [rdi], rax
-                adc             rdx, 0				
+                adc             rdx, 0
                 mov             rax, rdx
                 xor             rdx, rdx
                 add             rdi, 8
@@ -121,7 +121,7 @@ add_long_short:
 ;    rcx -- length of long number in qwords
 ; result:
 ;    result is written to r13
-mul_long_short:		
+mul_long_short:
                 push            rax
                 push            rdi
                 push            rcx
@@ -229,7 +229,7 @@ read_long:
 
                 sub             rax, '0'
                 mov             rbx, 10
-		        mov		        r13, rdi
+                mov             r13, rdi
                 call            mul_long_short
                 call            add_long_short
                 jmp             .loop
@@ -239,7 +239,7 @@ read_long:
                 pop             rcx
                 ret
 
-.invalid_char:								
+.invalid_char:
                 mov             rsi, invalid_char_msg
                 mov             rdx, invalid_char_msg_size
                 call            print_string
@@ -262,7 +262,7 @@ read_long:
 write_long:
                 push            rax
                 push            rcx
-			
+
                 mov             rax, 20
                 mul             rcx
                 mov             rbp, rsp
