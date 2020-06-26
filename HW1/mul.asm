@@ -7,7 +7,6 @@ section         .text
 ;    r12 -- address of multiplier #2 (long number)
 ;    r13 -- address for intermediate calculations (long number)
 
-<<<<<<< HEAD
 _start:
                 sub             rsp, 5 * 256 * 8    
                 mov             rcx, 256 					
@@ -18,27 +17,10 @@ _start:
         		lea             r11, [rsp + 1 * 256 * 8] 		 
                 lea		        r12, [rsp + 2 * 256 * 8]	
                 lea		        r13, [rsp + 4 * 256 * 8]
-=======
-                sub             rsp, 5 * 128 * 8 		
-                mov             rcx, 128 			
-		mov	        r13, rcx			
-		mov		r14, 128 * 2			
-                lea             rdi, [rsp + 128 * 8] 		
-                call            read_long 			
-                mov             rdi, rsp		
-                call            read_long 			
-        	lea             rsi, [rsp + 128 * 8] 		
-                lea		r11, [rsp + 2 * 128 * 8]	
-                lea		r12, [rsp + 4 * 128 * 8]
->>>>>>> 5ff84db63887d8ff7dd398ae02d11c646ef1c3f4
 
-		call	     	mul_long_long		
+		        call	     	mul_long_long		
 
-<<<<<<< HEAD
 		        mov		        rdi, r12
-=======
-		mov		rdi, r11
->>>>>>> 5ff84db63887d8ff7dd398ae02d11c646ef1c3f4
                 call            write_long 		
                 mov             al, 0x0a
                 call            write_char
@@ -53,7 +35,6 @@ _start:
 
 mul_long_long:
                 push            r11
-<<<<<<< HEAD
                 push            r12
                 push            rcx
 		        push		    rbx
@@ -65,42 +46,18 @@ mul_long_long:
     		    push		    r11			
     		    call		    mul_long_short     		
     		    pop		        r11
-=======
-                push            r13
-                push            rsi
-		push		rbx
-		
-		
-.loop:
-          	mov		rbx, [rsi]		
 
-    		push		rsi				
-    		call		mul_long_short     		
-    		pop		rsi
->>>>>>> 5ff84db63887d8ff7dd398ae02d11c646ef1c3f4
-
-        	call		add_long_long
+        		call		    add_long_long
 	
-<<<<<<< HEAD
         		lea		        r12, [r12 + 8]
                 lea             r11, [r11 + 8]  
-=======
-        	lea		r11, [r11 + 8]
-                lea             rsi, [rsi + 8]  
->>>>>>> 5ff84db63887d8ff7dd398ae02d11c646ef1c3f4
 
                 dec             rcx				
                 jnz             .loop
 
-<<<<<<< HEAD
 		        pop		        rbx
                 pop             rcx
                 pop             r12
-=======
-		pop		rbx
-                pop             rsi
-                pop             r13
->>>>>>> 5ff84db63887d8ff7dd398ae02d11c646ef1c3f4
                 pop             r11
                 ret	
 
@@ -168,11 +125,7 @@ mul_long_short:
                 push            rax
                 push            rdi
                 push            rcx
-<<<<<<< HEAD
                 push            r13
-=======
-		push		r12
->>>>>>> 5ff84db63887d8ff7dd398ae02d11c646ef1c3f4
 
                 xor             r11, r11
 .loop:
@@ -183,20 +136,11 @@ mul_long_short:
                 mov             [r13], rax
                 add             r13, 8
                 add             rdi, 8
-<<<<<<< HEAD
                 mov             r11, rdx
                 dec             rcx
                 jnz             .loop
 
                 pop             r13
-=======
-		add		r12, 8
-                mov             rsi, rdx
-                dec             rcx
-                jnz             .loop
-
-		pop		r12
->>>>>>> 5ff84db63887d8ff7dd398ae02d11c646ef1c3f4
                 pop             rcx
                 pop             rdi
                 pop             rax
@@ -285,11 +229,7 @@ read_long:
 
                 sub             rax, '0'
                 mov             rbx, 10
-<<<<<<< HEAD
 		        mov		        r13, rdi
-=======
-		mov		r12, rdi
->>>>>>> 5ff84db63887d8ff7dd398ae02d11c646ef1c3f4
                 call            mul_long_short
                 call            add_long_short
                 jmp             .loop
