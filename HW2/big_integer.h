@@ -14,6 +14,7 @@ private:
     friend uint32_t trial(big_integer &a, big_integer const &b);
     friend bool smaller(big_integer const &a, big_integer const &b, size_t index);
     friend void difference(big_integer &a, big_integer const &b, size_t index);
+    friend big_integer bin_operator(big_integer a, big_integer const& b, int mode);
 
 public:
     big_integer();

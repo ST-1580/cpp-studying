@@ -30,7 +30,7 @@ big_integer::big_integer(std::string const& str) : value(1), sign(false) {
     size_t curr_pos = (str[0] == '-' ? 1 : 0);
     while (curr_pos < str.size()) {
         *this *= 10;
-        *this += (uint32_t) (str[curr_pos] - '0');
+        *this += (uint32_t) (str[curr_pos] - 48);
         curr_pos++;
     }
     sign = (str[0] == '-');
@@ -141,8 +141,8 @@ big_integer operator+(big_integer a, big_integer const& b) {
         return !a.sign ? a - (-b) : b - (-a);
     }
     size_t max_sz = std::max(a.value.size(), b.value.size());
-    uint64_t sum = 0;
-    uint64_t shift = 0; // 0 or 1
+    uint64_t sum;
+    uint64_t shift = 0;
     big_integer res;
     for (size_t i = 0; i <= max_sz; i++) {
         res.value.push_back(0);
@@ -174,7 +174,7 @@ big_integer operator-(big_integer a, big_integer const& b) {
     if (a < b) {
         return -(b - a);
     }
-    uint32_t shift = 0; // 0 or 1
+    uint32_t shift = 0;
     big_integer res;
     for (size_t i = 0; i < a.value.size(); i++) {
         res.value.push_back(0);
@@ -209,11 +209,11 @@ big_integer operator*(big_integer a, big_integer const& b) {
         res.value.push_back(0);
     }
     for (size_t i = 0; i < a.value.size(); i++) {
-        uint64_t shift = 0; // every uint32_t number
+        uint64_t shift = 0;
         for (size_t j = 0; j < b.value.size(); j++) {
-            uint64_t mul = (uint64_t) a.value[i] * b.value[j] + res.value[i + j] + shift;
-            res.value[i + j] = (uint32_t) mul & UINT32_MAX;
-            shift = (uint32_t) (mul >> 32);
+            uint64_t curr_mul = (uint64_t) a.value[i] * b.value[j] + res.value[i + j] + shift;
+            res.value[i + j] = (uint32_t) curr_mul % ((uint64_t) UINT32_MAX + 1);
+            shift = (uint32_t) (curr_mul >> 32);
         }
         res.value[i + b.value.size()] = shift;
     }
@@ -231,43 +231,42 @@ big_integer operator/(big_integer a, big_integer const& b) {
     }
     big_integer first = a;
     big_integer second = b;
-    big_integer res;
     first.sign = second.sign = false;
+    big_integer res;
     if (first < second) {
         return 0;
     }
-    if (second.value.size() == 1) {
-        uint32_t b_value = b.value[0];
+    if (b.value.size() == 1) {
         uint64_t rest = 0;
-        uint64_t curr = 0;
-        for (size_t i = 0; i < first.value.size(); i++) {
-            curr = (rest << 32) | a.value[a.value.size() - 1 - i];
-            res.value.push_back((uint32_t) (curr / b_value));
-            rest = curr % b_value;
+        uint64_t curr;
+        for (size_t i = 1; i <= a.value.size(); i++) {
+            curr = (rest << 32) | a.value[a.value.size() - i];
+            res.value.push_back((uint32_t) (curr / b.value[0]));
+            rest = curr % b.value[0];
         }
         std::reverse(res.value.begin(), res.value.end());
-        res.delete_zero();
-        res.sign = a.sign ^ b.sign;
-        return res;
-    }
-    // Algo from article: Multiple-Length Division Revisited: A Tour of the Minefield
-    big_integer dq;
-    first.value.push_back(0);
-    size_t m = second.value.size() + 1;
-    size_t n = first.value.size();
-    res.value.resize(n - m + 1);
-    uint32_t qt = 0;
-    for (size_t i = m, j = res.value.size() - 1; i <= n; ++i, --j) {
-        qt = trial(first, second);
-        dq = second * qt;
-        if (!smaller(first, dq, m)) {
-            qt--;
+    } else {
+        // Algo from article: Multiple-Length Division Revisited: A Tour of the Minefield
+        big_integer dq;
+        first.value.push_back(0);
+        size_t m = second.value.size();
+        size_t n = first.value.size();
+        res.value.resize(n - m);
+        uint32_t qt = 0;
+        size_t j = res.value.size() - 1;
+        for (size_t i = m + 1; i <= n; i++) {
+            qt = trial(first, second);
             dq = second * qt;
-        }
-        res.value[j] = qt;
-        difference(first, dq, m);
-        if (!first.value.back()) {
-            first.value.pop_back();
+            if (!smaller(first, dq, m + 1)) {
+                qt--;
+                dq = second * qt;
+            }
+            res.value[j] = qt;
+            difference(first, dq, m + 1);
+            if (!first.value.back()) {
+                first.value.pop_back();
+            }
+            j--;
         }
     }
     res.delete_zero();
@@ -280,74 +279,31 @@ big_integer operator%(big_integer a, big_integer const& b) {
 }
 
 big_integer operator&(big_integer a, big_integer const& b) {
-    big_integer first_num = a;
-    big_integer second_num = b;
-    big_integer res;
-    size_t max_sz = std::max(a.value.size(), b.value.size());
-    first_num.inverse(max_sz);
-    second_num.inverse(max_sz);
-    res.inverse(max_sz); // just push_back(0)
-    for (size_t i = 0; i < max_sz; i++) {
-        res.value[i] = first_num.value[i] & second_num.value[i];
-    }
-    if (a.sign & b.sign) {
-        res = -res;
-        res.inverse(max_sz);
-        res = -res;
-    }
-    return res;
+    return bin_operator(a, b, 1);
 }
 
 big_integer operator|(big_integer a, big_integer const& b) {
-    big_integer first_num = a;
-    big_integer second_num = b;
-    big_integer res;
-    size_t max_sz = std::max(a.value.size(), b.value.size());
-    first_num.inverse(max_sz);
-    second_num.inverse(max_sz);
-    res.inverse(max_sz); // just push_back(0)
-    for (size_t i = 0; i < max_sz; i++) {
-        res.value[i] = first_num.value[i] | second_num.value[i];
-    }
-    if (a.sign | b.sign) {
-        res = -res;
-        res.inverse(max_sz);
-        res = -res;
-    }
-    return res;
+    return bin_operator(a, b, 2);
 }
 
 big_integer operator^(big_integer a, big_integer const& b) {
-    big_integer first_num = a;
-    big_integer second_num = b;
-    big_integer res;
-    size_t max_sz = std::max(a.value.size(), b.value.size());
-    first_num.inverse(max_sz);
-    second_num.inverse(max_sz);
-    res.inverse(max_sz); // just push_back(0)
-    for (size_t i = 0; i < max_sz; i++) {
-        res.value[i] = first_num.value[i] ^ second_num.value[i];
-    }
-    if (a.sign ^ b.sign) {
-        res = -res;
-        res.inverse(max_sz);
-        res = -res;
-    }
-    return res;
+    return bin_operator(a, b, 3);
 }
 
 big_integer operator<<(big_integer a, int b) {
     uint32_t shift = 1 << b % 32;
-    a *= shift;
+    big_integer u32 = big_integer(UINT32_MAX) + 1;
     for (int i = 0; i < b / 32; i++) {
-        a.value.push_back(0);
+        a *= u32;
     }
+    a *= shift;
     return a;
 }
 
 big_integer operator>>(big_integer a, int b) {
+    big_integer u32 = big_integer(UINT32_MAX) + 1;
     for (int i = 0; i < b / 32; i++) {
-        a.value.pop_back();
+        a /= u32;
     }
     a -= a.sign ? (uint32_t) (1 << b % 32) - 1 : 0;
     uint32_t shift = 1 << b % 32;
@@ -410,7 +366,8 @@ std::string to_string(big_integer const& a) {
     std::string str;
     big_integer curr = a;
     while (curr != 0) {
-        str += char ('0' + (curr % 10).value[0]);
+        int now = (curr % 10).value[0];
+        str += char (now + 48);
         curr /= 10;
     }
     str += a.sign ? "-" : "";
@@ -446,24 +403,60 @@ uint32_t trial(big_integer &a, big_integer const &b) {
     return std::min((uint32_t) (x / y), UINT32_MAX);
 }
 
-bool smaller(big_integer const &a, big_integer const &b, size_t index) {
+bool smaller(big_integer const &a, big_integer const &b, size_t id) {
     for (size_t i = 1; i <= a.value.size(); i++) {
-        if (a.value[a.value.size() - i] != (index - i < b.value.size() ? b.value[index - i] : 0)) {
-            return a.value[a.value.size() - i] > (index - i < b.value.size() ? b.value[index - i] : 0);
+        if (id - i < b.value.size()) {
+            if (a.value[a.value.size() - i] != b.value[id - i]) {
+                return a.value[a.value.size() - i] > b.value[id - i];
+            }
+        } else {
+            if (a.value[a.value.size() - i] != 0) {
+                return a.value[a.value.size() - i] > 0;
+            }
         }
     }
     return true;
 }
 
-void difference(big_integer &a, big_integer const &b, size_t index) {
-    size_t start = a.value.size() - index;
-    bool borrow = false;
-    for (size_t i = 0; i < index; ++i) {
-        uint32_t x = a.value[start + i];
-        uint32_t y = i < b.value.size() ? b.value[i] : 0;
-        uint64_t c = (uint64_t) x - y - borrow;
-        borrow = y + borrow > x;
-        c &= UINT32_MAX;
-        a.value[start + i] = c;
+void difference(big_integer &a, big_integer const &b, size_t id) {
+    size_t start = a.value.size() - id;
+    int64_t borrow = 0;
+    uint64_t u32 = (uint64_t) UINT32_MAX + 1;
+    for (size_t i = 0; i < id; i++) {
+        uint32_t val = i < b.value.size() ? b.value[i] : 0;
+        uint64_t diff = (uint64_t) a.value[start + i] - val + u32 - borrow;
+        a.value[start + i] = diff % u32;
+        borrow = 1 - diff / u32;
     }
+}
+
+uint32_t bin_op(uint32_t a, uint32_t b, int mode) {
+    if (mode == 1) {
+        return a & b;
+    } else if (mode == 2) {
+        return a | b;
+    } else {
+        return a ^ b;
+    }
+}
+
+
+big_integer bin_operator(big_integer a, big_integer const& b, int mode) {
+    big_integer first_num = a;
+    big_integer second_num = b;
+    big_integer res;
+    size_t max_sz = std::max(a.value.size(), b.value.size());
+    first_num.inverse(max_sz);
+    second_num.inverse(max_sz);
+    res.inverse(max_sz);
+    for (size_t i = 0; i < max_sz; i++) {
+        res.value[i] = bin_op(first_num.value[i], second_num.value[i], mode);
+    }
+    bool is_inv = bin_op(a.sign, b.sign, mode);
+    if (is_inv) {
+        res = -res;
+        res.inverse(max_sz);
+        res = -res;
+    }
+    return res;
 }
