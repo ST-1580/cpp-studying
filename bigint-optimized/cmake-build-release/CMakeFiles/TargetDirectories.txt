@@ -1,3 +1,0 @@
-/home/st_1580/first-term/bigint-optimized/cmake-build-release/CMakeFiles/rebuild_cache.dir
-/home/st_1580/first-term/bigint-optimized/cmake-build-release/CMakeFiles/edit_cache.dir
-/home/st_1580/first-term/bigint-optimized/cmake-build-release/CMakeFiles/big_integer_testing.dir
