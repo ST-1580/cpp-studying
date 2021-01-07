@@ -1,0 +1,6 @@
+/home/st_1580/first-term/asm/build/CMakeFiles/rebuild_cache.dir
+/home/st_1580/first-term/asm/build/CMakeFiles/add.dir
+/home/st_1580/first-term/asm/build/CMakeFiles/hello.dir
+/home/st_1580/first-term/asm/build/CMakeFiles/mul.dir
+/home/st_1580/first-term/asm/build/CMakeFiles/sub.dir
+/home/st_1580/first-term/asm/build/CMakeFiles/edit_cache.dir

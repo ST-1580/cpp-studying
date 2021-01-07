@@ -1,3 +1,0 @@
-/home/st_1580/CLionProjects/cpp-studying/Lab2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/st_1580/CLionProjects/cpp-studying/Lab2/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/st_1580/CLionProjects/cpp-studying/Lab2/cmake-build-debug/CMakeFiles/vector_testing.dir

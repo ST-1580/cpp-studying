@@ -1,3 +1,0 @@
-/home/st_1580/CLionProjects/cpp-studying/HW2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/st_1580/CLionProjects/cpp-studying/HW2/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/st_1580/CLionProjects/cpp-studying/HW2/cmake-build-debug/CMakeFiles/big_integer_testing.dir

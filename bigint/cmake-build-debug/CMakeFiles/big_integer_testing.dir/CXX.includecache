@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/st_1580/first-term/bigint/big_integer.cpp
+big_integer.h
+/home/st_1580/first-term/bigint/big_integer.h
+
+/home/st_1580/first-term/bigint/big_integer.h
+vector
+-
+string
+-
+limits
+-
+algorithm
+-
+

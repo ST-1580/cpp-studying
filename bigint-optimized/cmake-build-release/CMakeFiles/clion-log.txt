@@ -1,0 +1,4 @@
+/snap/clion/114/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" /home/st_1580/first-term/bigint-optimized
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/st_1580/first-term/bigint-optimized/cmake-build-release

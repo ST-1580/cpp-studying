@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="BIGINT" targetName="big_integer_testing" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+      <configuration PROFILE_NAME="Release" CONFIG_NAME="Release" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e87f7ab2-0ba0-48f5-9b2d-5475926730ae" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Release" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1eDQ5lqsghpCsdo55KvoBRx47rM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/bigint" />
+    <property name="settings.editor.selected.configurable" value="dynamic.analysis.tools.valgrind" />
+  </component>
+  <component name="RunManager">
+    <configuration name="big_integer_testing" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BIGINT" TARGET_NAME="big_integer_testing" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="BIGINT" RUN_TARGET_NAME="big_integer_testing" TEST_MODE="SUITE_TEST">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="BeforeTestRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e87f7ab2-0ba0-48f5-9b2d-5475926730ae" name="Default Changelist" comment="" />
+      <created>1593853502809</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1593853502809</updated>
+      <workItem from="1593853504650" duration="10477000" />
+      <workItem from="1593881586775" duration="4998000" />
+      <workItem from="1593888192421" duration="7771000" />
+      <workItem from="1593924162800" duration="9000" />
+      <workItem from="1594117317798" duration="442000" />
+      <workItem from="1594118823419" duration="17000" />
+      <workItem from="1594118918109" duration="9548000" />
+      <workItem from="1594195164889" duration="28000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="743" y="276" width="424" height="491" key="FileChooserDialogImpl" timestamp="1594128226109">
+      <screen x="0" y="0" width="1920" height="1036" />
+    </state>
+    <state x="743" y="276" width="424" height="491" key="FileChooserDialogImpl/0.0.1920.1036@0.0.1920.1036" timestamp="1594128226109" />
+    <state width="1874" height="289" key="GridCell.Tab.0.bottom" timestamp="1594188697222">
+      <screen x="0" y="0" width="1920" height="1036" />
+    </state>
+    <state width="1874" height="289" key="GridCell.Tab.0.bottom/0.0.1920.1036@0.0.1920.1036" timestamp="1594188697222" />
+    <state width="1874" height="289" key="GridCell.Tab.0.center" timestamp="1594188697222">
+      <screen x="0" y="0" width="1920" height="1036" />
+    </state>
+    <state width="1874" height="289" key="GridCell.Tab.0.center/0.0.1920.1036@0.0.1920.1036" timestamp="1594188697222" />
+    <state width="1874" height="289" key="GridCell.Tab.0.left" timestamp="1594188697222">
+      <screen x="0" y="0" width="1920" height="1036" />
+    </state>
+    <state width="1874" height="289" key="GridCell.Tab.0.left/0.0.1920.1036@0.0.1920.1036" timestamp="1594188697222" />
+    <state width="1874" height="289" key="GridCell.Tab.0.right" timestamp="1594188697222">
+      <screen x="0" y="0" width="1920" height="1036" />
+    </state>
+    <state width="1874" height="289" key="GridCell.Tab.0.right/0.0.1920.1036@0.0.1920.1036" timestamp="1594188697222" />
+    <state width="1864" height="333" key="GridCell.Tab.1.bottom" timestamp="1593924078741">
+      <screen x="0" y="0" width="1920" height="1036" />
+    </state>
+    <state width="1864" height="333" key="GridCell.Tab.1.bottom/0.0.1920.1036@0.0.1920.1036" timestamp="1593924078741" />
+    <state width="1864" height="333" key="GridCell.Tab.1.center" timestamp="1593924078741">
+      <screen x="0" y="0" width="1920" height="1036" />
+    </state>
+    <state width="1864" height="333" key="GridCell.Tab.1.center/0.0.1920.1036@0.0.1920.1036" timestamp="1593924078741" />
+    <state width="1864" height="333" key="GridCell.Tab.1.left" timestamp="1593924078741">
+      <screen x="0" y="0" width="1920" height="1036" />
+    </state>
+    <state width="1864" height="333" key="GridCell.Tab.1.left/0.0.1920.1036@0.0.1920.1036" timestamp="1593924078741" />
+    <state width="1864" height="333" key="GridCell.Tab.1.right" timestamp="1593924078741">
+      <screen x="0" y="0" width="1920" height="1036" />
+    </state>
+    <state width="1864" height="333" key="GridCell.Tab.1.right/0.0.1920.1036@0.0.1920.1036" timestamp="1593924078741" />
+    <state width="1874" height="289" key="GridCell.Tab.2.bottom" timestamp="1593895260423">
+      <screen x="0" y="0" width="1920" height="1036" />
+    </state>
+    <state width="1874" height="289" key="GridCell.Tab.2.bottom/0.0.1920.1036@0.0.1920.1036" timestamp="1593895260423" />
+    <state width="1874" height="289" key="GridCell.Tab.2.center" timestamp="1593895260423">
+      <screen x="0" y="0" width="1920" height="1036" />
+    </state>
+    <state width="1874" height="289" key="GridCell.Tab.2.center/0.0.1920.1036@0.0.1920.1036" timestamp="1593895260423" />
+    <state width="1874" height="289" key="GridCell.Tab.2.left" timestamp="1593895260423">
+      <screen x="0" y="0" width="1920" height="1036" />
+    </state>
+    <state width="1874" height="289" key="GridCell.Tab.2.left/0.0.1920.1036@0.0.1920.1036" timestamp="1593895260423" />
+    <state width="1874" height="289" key="GridCell.Tab.2.right" timestamp="1593895260423">
+      <screen x="0" y="0" width="1920" height="1036" />
+    </state>
+    <state width="1874" height="289" key="GridCell.Tab.2.right/0.0.1920.1036@0.0.1920.1036" timestamp="1593895260423" />
+    <state x="450" y="154" width="1022" height="737" key="SettingsEditor" timestamp="1593894660721">
+      <screen x="0" y="0" width="1920" height="1036" />
+    </state>
+    <state x="450" y="154" width="1022" height="737" key="SettingsEditor/0.0.1920.1036@0.0.1920.1036" timestamp="1593894660721" />
+  </component>
+</project>
