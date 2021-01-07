@@ -1,13 +1,9 @@
 # cpp-studying
 
-Домашние и лабораторные работы по C++: 
+* [asm](http://sorokin.github.io/cpp-course/task-1.html "asm")
 
-* HW1 - суммa и умножение длинных чисел
+* [bigint-opt](http://sorokin.github.io/cpp-course/task-3.html "bigint-opt")
 
-* HW2 - реализация библиотеки big_integer
+* [bigint](http://sorokin.github.io/cpp-course/task-2.html "bigint")
 
-* Lab1 - поиск подстроки в файле
-
-* Lab2 - реализация библиотеки vector
-
-* BIGINT_VECTOR реализация библиотеки big_integer, используя свой вектор 
+* vector - реализация библиотеки vector
